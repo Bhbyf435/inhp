@@ -1,0 +1,513 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>АО ИНХП | Инвестиционный проект | Золотой портфель</title>
+    <style>
+        /* RESET — максимальная совместимость с почтовыми клиентами */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #07080a;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: #e5e9f0;
+            padding: 20px 0 60px;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Золотые акценты */
+        :root {
+            --gold: #F5B041;
+            --gold-dark: #B97F10;
+            --gold-light: #FFD966;
+            --gold-glow: rgba(245, 176, 65, 0.25);
+            --dark-bg: #0B0C10;
+            --card-bg: #111316;
+            --border-gold: 1px solid rgba(245, 176, 65, 0.35);
+        }
+
+        /* Градиентный заголовок с прозрачностью */
+        .gold-gradient-title {
+            font-size: clamp(2rem, 8vw, 4.8rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #F9D423 0%, #F5B041 35%, #D4AF37 70%, #FFDF80 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .subhead {
+            font-size: 1.2rem;
+            color: #b9c3d9;
+            border-left: 4px solid var(--gold);
+            padding-left: 20px;
+            margin: 20px 0 30px;
+            font-weight: 500;
+        }
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 32px;
+            padding: 28px 30px;
+            margin-bottom: 48px;
+            border: var(--border-gold);
+            box-shadow: 0 20px 35px -15px rgba(0,0,0,0.6), 0 0 0 1px rgba(245,176,65,0.1) inset;
+            transition: transform 0.2s ease;
+        }
+        .section-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(245,176,65,0.6);
+        }
+        h2 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(120deg, #fff 30%, var(--gold-light) 80%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            border-bottom: 3px solid var(--gold);
+            padding-bottom: 8px;
+        }
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 1rem 0 0.8rem;
+            color: var(--gold-light);
+        }
+        h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin: 0.75rem 0 0.5rem;
+        }
+        /* Теги (сетка инструментов) */
+        .tags-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 25px 0 15px;
+        }
+        .tag {
+            background: rgba(245, 176, 65, 0.12);
+            border: 1px solid rgba(245, 176, 65, 0.4);
+            padding: 8px 20px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #FFE0A3;
+        }
+        /* Сетка проектов — компактные блоки */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 28px;
+            margin-top: 20px;
+        }
+        .project-card {
+            background: #0e1015;
+            border-radius: 28px;
+            padding: 22px;
+            border-left: 5px solid var(--gold);
+            transition: 0.2s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover {
+            background: #13161f;
+            transform: translateY(-4px);
+        }
+        .project-card h4 {
+            font-size: 1.4rem;
+            margin-top: 0;
+            font-weight: 800;
+        }
+        .investment-badge {
+            display: inline-block;
+            background: rgba(0,0,0,0.6);
+            border: 1px solid var(--gold);
+            border-radius: 40px;
+            padding: 5px 14px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--gold);
+            margin: 12px 0 8px;
+            align-self: flex-start;
+        }
+        .stat-line {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed rgba(245,176,65,0.3);
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+        .highlight-gold {
+            color: var(--gold);
+            font-weight: 800;
+        }
+        .project-description {
+            font-size: 0.85rem;
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(245,176,65,0.2);
+            color: #cbd5f0;
+            line-height: 1.4;
+        }
+        /* Таблица короткая (3 года) */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 20px;
+            background: #0a0c12;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        th, td {
+            padding: 12px 10px;
+            text-align: center;
+            border-bottom: 1px solid #2a2e3a;
+        }
+        th {
+            background: #1e212b;
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .benefits-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+        .benefits-list li {
+            padding-left: 28px;
+            position: relative;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+        .benefits-list li::before {
+            content: "⚡";
+            color: var(--gold);
+            position: absolute;
+            left: 0;
+        }
+        .accent-text {
+            color: var(--gold-light);
+            font-weight: 700;
+        }
+        .footer-contact {
+            text-align: center;
+            background: linear-gradient(145deg, #0f1117, #090b0f);
+            border-radius: 48px;
+            padding: 32px 20px;
+            margin-top: 40px;
+            border: 2px solid rgba(245,176,65,0.4);
+        }
+        .phone-gold {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #F5B041;
+            text-shadow: 0 0 6px rgba(245,176,65,0.5);
+            word-break: break-word;
+        }
+        @media (max-width: 780px) {
+            .container { padding: 0 16px; }
+            .section-card { padding: 20px; }
+            .projects-grid { grid-template-columns: 1fr; }
+            h2 { font-size: 1.6rem; }
+            .phone-gold { font-size: 1.6rem; }
+        }
+        hr {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 24px 0;
+        }
+        .gold-stats {
+            background: rgba(245,176,65,0.05);
+            border-radius: 24px;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+        strong {
+            color: var(--gold);
+        }
+        .feature-badge {
+            display: inline-block;
+            background: #1f232e;
+            border-radius: 30px;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Дерзкий заголовок -->
+    <div class="section-card" style="text-align: center; background: radial-gradient(circle at 10% 30%, #0f1117, #020304);">
+        <div class="gold-gradient-title">⚡ ИНВЕСТИЦИОННЫЙ ПРОЕКТ ⚡</div>
+        <div style="font-size: 1.3rem; font-weight: 500; margin-top: 10px;">АО «ИНСТИТУТ НЕФТЕХИМПЕРЕРАБОТКИ» (АО ИНХП, г. Уфа)</div>
+        <div class="subhead" style="border-left-color: var(--gold); max-width: 800px; margin: 25px auto 0;">
+            Предлагаем стратегическое партнёрство в реализации высокомаржинальных бизнес-проектов в сфере нефтехимии, энергетики и переработки отходов, с возможностью приобретения предприятия стратегическими инвесторами.<br>
+            <span style="font-size: 0.9rem; opacity: 0.8;">*После запуска предприятий возможен перевод в статус технопарка с налоговыми преференциями.</span>
+        </div>
+    </div>
+
+    <!-- РАЗДЕЛ 1: О КОМПАНИИ (обновлено описание команды) -->
+    <div class="section-card">
+        <h2>🏭 О компании</h2>
+        <p style="margin-bottom: 20px;"><strong>АО ИНХП</strong> — многопрофильный инженерный комплекс с 70-летней историей. С 2018 года работает в акционерной форме.</p>
+        <div class="tags-grid">
+            <span class="tag">#13 патентов</span>
+            <span class="tag">#30+ восстанавливаемых</span>
+            <span class="tag">#72 лаборатории</span>
+            <span class="tag">#270 ед. высокотехн. оборудования</span>
+            <span class="tag">#Пилотные установки</span>
+            <span class="tag">#Ж/Д логистика</span>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 30px; margin: 20px 0 10px;">
+            <div style="flex: 1;">
+                <ul class="benefits-list">
+                    <li>13 действующих патентов, ещё 30 — восстановимых</li>
+                    <li><strong>Команда: специалисты, профессора, доктора наук, изобретатели и разработчики инновационных прорывных проектов</strong></li>
+                    <li>Центр коллективного доступа: лабораторный, пилотный, опытно-промышленный</li>
+                    <li><strong class="highlight-gold">270 единиц</strong> высокотехнологичного лабораторного оборудования (спектрометры, хроматографы, анализаторы)</li>
+                </ul>
+            </div>
+            <div style="flex: 1;">
+                <ul class="benefits-list">
+                    <li>Земельный участок <strong>1 116 653 м²</strong> + 30 зданий/сооружений</li>
+                    <li>Лаборатории: ректификация, деасфальтизация, коксование, каталитические процессы — всего 72 лаборатории</li>
+                    <li>Ж/д подъезд к станции «Бензин», энергоподключения, очистные сооружения</li>
+                    <li>Металлообрабатывающий и сварочный цеха (станки рабочие)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="tags-grid">
+            <span class="tag">Гидроочистка</span>
+            <span class="tag">Гидрокрекинг</span>
+            <span class="tag">Пиролиз</span>
+            <span class="tag">Синтез Фишера-Тропша</span>
+            <span class="tag">Центр прототипирования</span>
+        </div>
+    </div>
+
+    <!-- ИНВЕСТИЦИОННЫЕ ПРОЕКТЫ (ПОРТФЕЛЬ) с кратким описанием под каждым -->
+    <div class="section-card">
+        <h2>🔥 Портфель высокомаржинальных проектов</h2>
+        <div class="projects-grid">
+            <!-- 1. НПЗ глубокой переработки -->
+            <div class="project-card">
+                <h4>🏗️ НПЗ глубокой переработки</h4>
+                <div class="investment-badge">🎯 14,8 млрд руб.</div>
+                <div class="stat-line"><span>Мощность:</span><span>2,4 млн т/год</span></div>
+                <div class="stat-line"><span>Срок реализации:</span><span>36 мес.</span></div>
+                <div class="stat-line"><span>Окупаемость (диск.):</span><span>7,5 лет</span></div>
+                <div class="stat-line"><span>Выручка/год:</span><span>21,6 млрд руб.</span></div>
+                <div class="stat-line"><span>Чистая прибыль:</span><span>0,8 млрд руб.</span></div>
+                <div class="project-description">Современный НПЗ с глубиной переработки >90%. Продукция: бензин Евро5+, дизель, авиакеросин, битумы, сера, адгезионные присадки.</div>
+            </div>
+            <!-- 2. Ингибиторы коррозии -->
+            <div class="project-card">
+                <h4>🧪 Ингибиторы коррозии</h4>
+                <div class="investment-badge">💰 650 млн руб.</div>
+                <div class="stat-line"><span>Мощность:</span><span>18 000 т/год</span></div>
+                <div class="stat-line"><span>Окупаемость (простая):</span><span>3 года</span></div>
+                <div class="stat-line"><span>Рентабельность:</span><span class="highlight-gold">30%</span></div>
+                <div class="stat-line"><span>Чистая прибыль:</span><span>432 млн руб./год</span></div>
+                <div class="project-description">Высокоэффективные ингибиторы для нефтепромысловых трубопроводов, систем водоснабжения и кислых сред. Защита от коррозии на длительный срок.</div>
+            </div>
+            <!-- 3. Имидазолины -->
+            <div class="project-card">
+                <h4>⚗️ Имидазолины</h4>
+                <div class="investment-badge">💎 480 млн руб.</div>
+                <div class="stat-line"><span>Мощность:</span><span>500 → 1000 т/год</span></div>
+                <div class="stat-line"><span>Окупаемость:</span><span>5 лет</span></div>
+                <div class="stat-line"><span>Рентабельность (3й год):</span><span>21,9%</span></div>
+                <div class="stat-line"><span>Чистая прибыль:</span><span>42 млн руб./год</span></div>
+                <div class="project-description">Имидазолины на основе жирных кислот — сырьё для поверхностно-активных веществ, ингибиторов и эмульгаторов. Востребованы в нефтехимии и косметике.</div>
+            </div>
+            <!-- 4. МЭЖК (метиловые эфиры) -->
+            <div class="project-card">
+                <h4>🌻 МЭЖК (биодизель)</h4>
+                <div class="investment-badge">📈 850 млн руб.</div>
+                <div class="stat-line"><span>Мощность:</span><span>10 000 т/год</span></div>
+                <div class="stat-line"><span>Рентабельность:</span><span>15–20%</span></div>
+                <div class="stat-line"><span>Окупаемость:</span><span>5–6 лет</span></div>
+                <div class="stat-line"><span>Чистая прибыль:</span><span>180–360 млн руб./год</span></div>
+                <div class="project-description">Производство метиловых эфиров жирных кислот из растительных масел. Применение: пластификаторы ПВХ, смазки, косметика, агрохимия. Экспортный потенциал.</div>
+            </div>
+            <!-- 5. Бескислотная платформа -->
+            <div class="project-card">
+                <h4>🧬 Бескислотная переработка</h4>
+                <div class="investment-badge">🚀 150 млн руб.</div>
+                <div class="stat-line"><span>IRR:</span><span>38%</span></div>
+                <div class="stat-line"><span>Окупаемость:</span><span>24–30 мес.</span></div>
+                <div class="stat-line"><span>Рентабельность (5й год):</span><span>до 35%</span></div>
+                <div class="stat-line"><span>Чистая прибыль (5й год):</span><span>156 млн руб.</span></div>
+                <div class="project-description">Инновационная технология механоактивации и кавитационной обработки без использования кислот. Прорыв в экологичности для фармацевтики, катализаторов, композитов.</div>
+            </div>
+            <!-- 6. МУССОН ТКО -->
+            <div class="project-card">
+                <h4>♻️ МУССОН ТКО</h4>
+                <div class="investment-badge">🌍 500 млн руб.</div>
+                <div class="stat-line"><span>Производительность:</span><span>240 м³/сутки</span></div>
+                <div class="stat-line"><span>Тепловая энергия:</span><span>0,5–7 МВт·ч/сут</span></div>
+                <div class="stat-line"><span>Окупаемость:</span><span>5–7 лет</span></div>
+                <div class="stat-line"><span>Валовая прибыль:</span><span>2 000 млн руб./год</span></div>
+                <div class="project-description">Мобильный комплекс термической переработки ТКО с генерацией тепла и электроэнергии. Снижает нагрузку на полигоны, оснащён системами газоочистки.</div>
+            </div>
+            <!-- 7. БМВ-ТРГ (водоподготовка) -->
+            <div class="project-card">
+                <h4>💧 БМВ-ТРГ (водоочистка)</h4>
+                <div class="investment-badge">💧 700 млн руб.</div>
+                <div class="stat-line"><span>Производительность завода:</span><span>50 установок/год</span></div>
+                <div class="stat-line"><span>Выручка (3й год):</span><span>800 млн руб./год</span></div>
+                <div class="stat-line"><span>Чистая прибыль:</span><span>60 млн руб./год</span></div>
+                <div class="stat-line"><span>Окупаемость (FCF):</span><span>~4 года</span></div>
+                <div class="project-description">Блочные модули на основе сорбента из терморасширенного графита (ТРГ). Удаление тяжёлых металлов, нефтепродуктов, органики. Сорбент без ограничения срока службы.</div>
+            </div>
+            <!-- 8. Пентальцид -->
+            <div class="project-card">
+                <h4>🦠 Пентальцид</h4>
+                <div class="investment-badge">🧪 50 млн руб. (CAPEX)</div>
+                <div class="stat-line"><span>Мощность:</span><span>до 1000 т/год</span></div>
+                <div class="stat-line"><span>Окупаемость:</span><span>~2 года</span></div>
+                <div class="stat-line"><span>Целевые рынки:</span><span>Сельхоз, ЖКХ, ветеринария</span></div>
+                <div class="project-description">Многофункциональное дезинфицирующее средство с антимикробным, противопаразитным и инсектицидным действием. Востребовано на промышленных и сельхозобъектах.</div>
+            </div>
+        </div>
+
+        <!-- Общий инвестиционный запрос и имущественный комплекс -->
+        <hr>
+        <div class="gold-stats">
+            <div style="font-size: 1.2rem; font-weight: bold;">🏆 Общий инвестиционный запрос по портфелю: <span class="highlight-gold" style="font-size: 1.6rem;">19,43 млрд руб.</span></div>
+            <div>➕ Имущественный комплекс АО ИНХП (земля + 30 зданий + 72 лаборатории + 270 ед. оборудования + НМА) — 1,3 млрд руб.</div>
+            <div>➕ НПЗ — 14,8 млрд | Ингибиторы — 650 млн | Имидазолины — 480 млн | МЭЖК — 850 млн | Бескислотная — 150 млн | МУССОН — 500 млн | БМВ-ТРГ — 700 млн | Пентальцид — 50 млн</div>
+        </div>
+    </div>
+
+    <!-- Таблица Пентальцид (3 года) -->
+    <div class="section-card">
+        <h2>📊 Финансовые показатели «Пентальцид» (тыс. руб.)</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr><th>Показатель</th><th>Год 1</th><th>Год 2</th><th>Год 3</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Выручка</td><td>41 634</td><td>113 508</td><td>172 839</td></tr>
+                    <tr><td>Чистая прибыль</td><td>-6 822</td><td>31 312</td><td>60 983</td></tr>
+                    <tr><td>FCF</td><td>-13 822</td><td>16 312</td><td>60 983</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="accent-text" style="margin-top: 20px;">🚀 Проект выходит на устойчивую прибыль со 2 года, окупаемость ~2 года.</p>
+    </div>
+
+    <!-- Дополнительный блок: сводная эффективность по ключевым проектам (объединено) -->
+    <div class="section-card">
+        <h2>📈 Ключевые финансовые показатели (блоки)</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+            <div style="flex: 1; background: #0e1118; border-radius: 24px; padding: 20px;">
+                <h4>🏭 НПЗ</h4>
+                <div class="stat-line"><span>Выручка:</span><span>21,6 млрд руб./год</span></div>
+                <div class="stat-line"><span>Чистая прибыль:</span><span>0,8 млрд руб./год</span></div>
+                <div class="stat-line"><span>Рентабельность:</span><span>3,7%</span></div>
+            </div>
+            <div style="flex: 1; background: #0e1118; border-radius: 24px; padding: 20px;">
+                <h4>🧪 Ингибиторы коррозии</h4>
+                <div class="stat-line"><span>Выручка:</span><span>1 440 млн руб./год</span></div>
+                <div class="stat-line"><span>Чистая прибыль:</span><span>432 млн руб./год</span></div>
+                <div class="stat-line"><span>Рентабельность:</span><span class="highlight-gold">30%</span></div>
+            </div>
+            <div style="flex: 1; background: #0e1118; border-radius: 24px; padding: 20px;">
+                <h4>🌻 МЭЖК</h4>
+                <div class="stat-line"><span>Выручка:</span><span>1 200 млн руб./год</span></div>
+                <div class="stat-line"><span>Чистая прибыль:</span><span>180-360 млн руб.</span></div>
+                <div class="stat-line"><span>Рентабельность:</span><span>15-20%</span></div>
+            </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px;">
+            <div style="flex: 1; background: #0e1118; border-radius: 24px; padding: 20px;">
+                <h4>💧 БМВ-ТРГ</h4>
+                <div class="stat-line"><span>Выручка (3й год):</span><span>800 млн руб./год</span></div>
+                <div class="stat-line"><span>Чистая прибыль:</span><span>60 млн руб./год</span></div>
+                <div class="stat-line"><span>Окупаемость:</span><span>~4 года</span></div>
+                <div class="stat-line"><span>ROI 5 лет:</span><span>28,6%</span></div>
+            </div>
+            <div style="flex: 1; background: #0e1118; border-radius: 24px; padding: 20px;">
+                <h4>♻️ МУССОН ТКО</h4>
+                <div class="stat-line"><span>Валовая прибыль:</span><span>2 000 млн руб./год</span></div>
+                <div class="stat-line"><span>Чистая прибыль (первые 8 лет):</span><span>1 470 млн руб.</span></div>
+                <div class="stat-line"><span>Рентабельность:</span><span>12-18%</span></div>
+            </div>
+            <div style="flex: 1; background: #0e1118; border-radius: 24px; padding: 20px;">
+                <h4>🧬 Бескислотная платформа</h4>
+                <div class="stat-line"><span>NPV (12%):</span><span>182 млн руб.</span></div>
+                <div class="stat-line"><span>IRR:</span><span class="highlight-gold">38%</span></div>
+                <div class="stat-line"><span>Чистая прибыль (5й год):</span><span>156 млн руб.</span></div>
+            </div>
+        </div>
+        <div class="gold-stats" style="margin-top: 20px; text-align: center;">
+            📍 Агрегированный горизонт окупаемости (имущественный комплекс + портфель) — <strong class="highlight-gold">6,5–7 лет</strong>.
+        </div>
+    </div>
+
+    <!-- Преимущества партнёрства + золотые теги -->
+    <div class="section-card">
+        <h2>⚡ Преимущества партнёрства</h2>
+        <div class="tags-grid">
+            <span class="tag">Высокая маржинальность</span>
+            <span class="tag">Запатентованные технологии</span>
+            <span class="tag">Локализация в Башкортостане</span>
+            <span class="tag">Готовая инфраструктура</span>
+            <span class="tag">Импортозамещение & экспорт</span>
+            <span class="tag">Технологический суверенитет</span>
+            <span class="tag">270 ед. высокотехн. оборудования</span>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 25px; margin: 10px 0;">
+            <div style="flex:1;">
+                <ul class="benefits-list">
+                    <li>Научно-технический потенциал: 13 патентов + 30 восстанавливаемых</li>
+                    <li>Пилотные установки полного цикла нефтепереработки</li>
+                    <li>Центр прототипирования (обратный инжиниринг)</li>
+                </ul>
+            </div>
+            <div style="flex:1;">
+                <ul class="benefits-list">
+                    <li>Земельный банк: более 111 га, Ж/Д ветка, энергомощности</li>
+                    <li>72 лаборатории + уникальное аналитическое оборудование</li>
+                    <li>Собственное металлообрабатывающее производство</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- КОНТАКТЫ (дерзкий финал) -->
+    <div class="footer-contact">
+        <div style="font-size: 1.2rem; font-weight: 500; letter-spacing: 2px;">ОПЕРАТОР ПРОЕКТА</div>
+        <div style="font-size: 1.8rem; font-weight: 800; margin: 12px 0;">ФОНД ТРАНСФЕРА ТЕХНОЛОГИЙ "ТРИАДА"</div>
+        <div style="font-size: 1rem; opacity: 0.9;">ЕДИНСТВО УЧЕНЫХ, ИНЖЕНЕРОВ И ПРОМЫШЛЕННИКОВ</div>
+        <hr style="background: var(--gold); width: 80px; margin: 25px auto;">
+        <div class="phone-gold">📞 +7 917 368 12 17</div>
+        <div style="margin-top: 20px; font-size: 0.9rem;">Обсудим формы входа: прямое инвестирование, покупка доли, стратегическое партнёрство</div>
+        <div style="margin-top: 15px;">✉️ АО ИНХП | Инжиниринг | Технологии будущего</div>
+    </div>
+    <div style="text-align: center; margin-top: 30px; font-size: 0.7rem; opacity: 0.5;">⚡ GOLD STANDARD PORTFOLIO — АО ИНХП, Уфа. Данные актуальны, проекты обеспечены инфраструктурой.</div>
+</div>
+</body>
+</html>
